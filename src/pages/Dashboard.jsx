@@ -13,6 +13,7 @@ import {
   Legend,
   Filler
 } from "chart.js";
+import RecentActivities from "./RecentActivities";
 
 ChartJS.register(
   CategoryScale,
@@ -198,6 +199,7 @@ const options1 = {
 
     </div>
     </div>
+    <RecentActivities/>
     </div>
   )
 }

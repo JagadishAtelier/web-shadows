@@ -27,7 +27,7 @@ export default function Sidebar() {
   ]
 
   return (
-    <aside className="hidden md:flex flex-col w-64 bg-transparent shadow-lg">
+    <aside className="sticky top-0 h-[100vh] hidden md:flex flex-col w-64 bg-transparent shadow-lg">
       {/* Logo / Title */}
       <div className="p-2.5 bg-[#02053D]">
         <div className="border border-[#3B44B2] bg-[#21234E] pl-5 py-[0.33rem] rounded-md">
@@ -40,7 +40,7 @@ export default function Sidebar() {
       <ScrollArea className="flex-1 bg-[#FCFCFD] mt-5 ml-3 rounded-md shadow-lg relative">
         <div className="p-4 flex gap-2 items-center justify-center border-b">
           <img src={logo}/>
-          <p className="text-lg font-bold">MediCore</p>
+          <p className="text-lg font-bold">Atelier Hms</p>
         </div>
         <nav className="p-4 space-y-4">
           {links.map((link) => {
