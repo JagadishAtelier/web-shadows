@@ -159,9 +159,9 @@ const options1 = {
   return (
     <div className="p-6 ">
       <h1 className="text-3xl font-bold mb-8 text-foreground">Overview (Quick Stats)</h1>
-    <div className="flex justify-between gap-5">
+    <div className="flex lg:flex-row md:flex-row flex-col justify-between gap-5">
       {/* Stat Cards */}
-      <div className="bg-white p-5 rounded-lg shadow-md w-1/2 h-100">
+      <div className="bg-white p-5 rounded-lg shadow-md lg:w-1/2 md:w-1/2 w-full h-100">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">Admitted Patients</h3>
           <div className="flex justify-baseline border p-2 rounded-md">
@@ -179,11 +179,13 @@ const options1 = {
           <p className="text-sm">is this month</p>
           </div>
         </div>
+        <div className="h-70 w-full">
         <Line data={data} options={options} className="py-5" />
+        </div>
       </div>
 
       {/* Stat Cards */}
-    <div className="bg-white p-5 rounded-lg shadow-md w-1/2 h-100">
+    <div className="bg-white p-5 rounded-lg shadow-md lg:w-1/2 md:w-1/2 w-full h-100">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold">Patients Category</h3>
           <div className="flex justify-baseline border p-2 rounded-md">

@@ -69,43 +69,56 @@ const allPagesData = [
 function RecentActivities() {
   return (
     <div className="p-4 my-5">
-        <div className="flex justify-between items-center mb-4">
-      <h2 className="text-xl font-semibold mb-4">Recent Activities</h2>
-      <a href="/" className="text-blue-700 underline">View All</a>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold mb-4">Recent Activities</h2>
+        <a href="/" className="text-blue-700 underline">
+          View All
+        </a>
       </div>
-      <Table>
-        <TableHeader>
-          <TableRow className="bg-[#E5E7FB] rounded-2xl hover:bg-[#E5E7FB]">
-            {tableHead.map((column, index) => (
-              <TableHead key={index} className="py-4 text-[#475467]">{column}</TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
 
-        <TableBody>
-          {allPagesData.map((patient, index) => (
-            <TableRow key={index} className="text-[#475467]">
-              <TableCell className="font-medium py-4 text-[#475467]">{patient.name}</TableCell>
-              <TableCell>{patient.id}</TableCell>
-              <TableCell>{patient.date}</TableCell>
-              <TableCell>{patient.sex}</TableCell>
-              <TableCell>
-                <span
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    patient.status === "Active"
-                      ? "bg-green-100 text-green-700"
-                      : "bg-purple-100 text-purple-700"
-                  }`}
+      {/* Responsive table wrapper */}
+      <div className="overflow-x-auto">
+        <Table className="min-w-[700px]">
+          <TableHeader>
+            <TableRow className="bg-[#E5E7FB] rounded-2xl hover:bg-[#E5E7FB]">
+              {tableHead.map((column, index) => (
+                <TableHead
+                  key={index}
+                  className="py-4 px-2 text-[#475467] whitespace-nowrap"
                 >
-                  {patient.status}
-                </span>
-                </TableCell>
-              <TableCell>{patient.doctor}</TableCell>
-              <TableCell>{patient.service}</TableCell>
+                  {column}
+                </TableHead>
+              ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+
+          <TableBody>
+            {allPagesData.map((patient, index) => (
+              <TableRow key={index} className="text-[#475467]">
+                <TableCell className="font-medium py-4 px-2 text-[#475467] whitespace-nowrap">
+                  {patient.name}
+                </TableCell>
+                <TableCell className="px-2">{patient.id}</TableCell>
+                <TableCell className="px-2">{patient.date}</TableCell>
+                <TableCell className="px-2">{patient.sex}</TableCell>
+                <TableCell className="px-2">
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm font-medium ${
+                      patient.status === "Active"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-purple-100 text-purple-700"
+                    }`}
+                  >
+                    {patient.status}
+                  </span>
+                </TableCell>
+                <TableCell className="px-2">{patient.doctor}</TableCell>
+                <TableCell className="px-2">{patient.service}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }
