@@ -83,7 +83,8 @@ const tableHead = role === "doctor" ? [...baseTableHead, "Action"] : baseTableHe
       <AddPatientModal open={open} setOpen={setOpen} />
 
       {/* Table */}
-      <Table className="rounded-2xl overflow-hidden border border-gray-200">
+      <div className="overflow-x-auto max-sm:w-[570px] ">
+      <Table className="min-w-[570px]  rounded-2xl overflow-hidden border border-gray-200">
         <TableHeader>
           <TableRow className="bg-[#E5E7FB] hover:bg-[#E5E7FB]">
             {tableHead.map((column, index) => (
@@ -119,7 +120,7 @@ const tableHead = role === "doctor" ? [...baseTableHead, "Action"] : baseTableHe
           ))}
         </TableBody>
       </Table>
-
+</div>
       {/* Pagination */}
       <div className="flex justify-between items-center mt-6">
         <p className="text-sm text-gray-500">

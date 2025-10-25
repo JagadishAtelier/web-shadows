@@ -161,7 +161,7 @@ const options1 = {
       <h1 className="text-3xl font-bold mb-8 text-foreground">Overview (Quick Stats)</h1>
     <div className="flex lg:flex-row md:flex-row flex-col justify-between gap-5">
       {/* Stat Cards */}
-      <div className="bg-white p-5 rounded-lg shadow-md lg:w-1/2 md:w-1/2 w-fit h-100">
+      <div className="bg-white p-5 rounded-lg shadow-md lg:w-1/2 md:w-1/2 w-full h-100">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">Admitted Patients</h3>
           <div className="flex justify-baseline border p-2 rounded-md">
