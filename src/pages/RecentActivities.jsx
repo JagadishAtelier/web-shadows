@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {
   Table,
   TableBody,
@@ -7,8 +7,9 @@ import {
   TableRow,
   TableHeader,
 } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 
-const tableHead = [
+const baseTableHead = [
   "Patient Name",
   "Patient ID",
   "Date",
@@ -67,6 +68,12 @@ const allPagesData = [
 ];
 
 function RecentActivities() {
+    const [role, setRole] = useState("");
+      useEffect(() => {
+    const storedRole = localStorage.getItem("role");
+    setRole(storedRole);
+  }, []);
+const tableHead = role === "doctor" ? [...baseTableHead, "Action"] : baseTableHead;
   return (
     <div className="p-4 my-5">
       <div className="flex justify-between items-center mb-4">
@@ -77,8 +84,8 @@ function RecentActivities() {
       </div>
 
       {/* Responsive table wrapper */}
-      <div className="overflow-x-auto max-sm:w-[570px]">
-        <Table className="min-w-[570px]">
+      <div className="overflow-x-auto max-sm:w-[570px] ">
+        <Table className="min-w-[570px] rounded-2xl overflow-hidden border border-gray-200">
           <TableHeader>
             <TableRow className="bg-[#E5E7FB] rounded-2xl hover:bg-[#E5E7FB]">
               {tableHead.map((column, index) => (
@@ -94,7 +101,7 @@ function RecentActivities() {
 
           <TableBody>
             {allPagesData.map((patient, index) => (
-              <TableRow key={index} className="text-[#475467]">
+              <TableRow key={index} className="text-[#475467] bg-white">
                 <TableCell className="font-medium py-4 px-2 text-[#475467] whitespace-nowrap">
                   {patient.name}
                 </TableCell>
@@ -114,6 +121,11 @@ function RecentActivities() {
                 </TableCell>
                 <TableCell className="px-2">{patient.doctor}</TableCell>
                 <TableCell className="px-2">{patient.service}</TableCell>
+                {role === "doctor" && (
+                  <TableCell className="px-2">
+                    <Button className="bg-blue-600 text-white h-8">Edit</Button>
+                  </TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>

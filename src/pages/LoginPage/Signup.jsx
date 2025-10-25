@@ -1,8 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React from "react";
-
+import React,{useState} from "react";
+import { useNavigate } from "react-router-dom";
 function Signup() {
+    const navigate = useNavigate()
+    const [formData, setFormData] = useState({ email: "", password: "" });
+      const handleLogin = () => {
+    // Simulate backend role check
+    const { email } = formData;
+    let userRole = "receptionist";
+
+    if (email === "doctor@gmail.com") userRole = "doctor"; // mock logic
+
+    // Store role in localStorage
+    localStorage.setItem("role", userRole);
+
+    navigate("/dashboard");
+  };
   return (
     <div className="flex w-full h-screen items-center justify-center gap-20">
       {/* Left side - Image */}
@@ -27,15 +41,17 @@ function Signup() {
 
           <div>
             <label className="block text-sm font-medium mb-1">Email</label>
-            <Input type="text" placeholder="Enter Email" className="h-13 bg-white w-full"/>
+            <Input type="text" placeholder="Enter Email" className="h-13 bg-white w-full"
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}/>
           </div>
 
           <div>
             <label className="block text-sm font-medium mb-1">Password</label>
-            <Input type="password" placeholder="Enter Password" className="h-13 bg-white w-full"/>
+            <Input type="password" placeholder="Enter Password" className="h-13 bg-white w-full"
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}/>
           </div>
           <p>Must be at least 8 characters.</p>
-          <Button className="w-full h-13 bg-[#1D3557] hover:bg-[#1D3557]">Log in</Button>
+          <Button className="w-full h-13 bg-[#1D3557] hover:bg-[#1D3557]" onClick={handleLogin}>Log in</Button>
           <div className="flex items-center gap-2">
             <div className="border w-full"></div>
             <p>OR</p>
