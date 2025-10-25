@@ -6,12 +6,12 @@ import PatientOverviewFields from './PatientOverviewFields'
 
 function PatientProfile() {
     return (
-        <div>
+        <div className=''>
             <div className='flex gap-2 items-center mb-8'>
                 <ArrowLeft size={18} />
                 <h2 className="text-lg font-bold text-[#0E1680]">Patient list / Patients Details / Alice Mwangi</h2>
             </div>
-            <div className='flex gap-4'>
+            <div className='flex gap-10'>
             {/* LEFT CONTENT */}
             <div className='w-[40%]'>
 
