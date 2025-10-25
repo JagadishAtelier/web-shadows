@@ -45,7 +45,7 @@ function ProductsList() {
   const endIndex = startIndex + rowsPerPage;
   const currentData = allPagesData.slice(startIndex, endIndex);
       const [role, setRole] = useState("");
-    const { setMode, setActiveLink } = useSidebar();
+    const { setMode, setActiveLink,setSelectedPatientId } = useSidebar();
       useEffect(() => {
     const storedRole = localStorage.getItem("role");
     setRole(storedRole);
@@ -53,6 +53,7 @@ function ProductsList() {
 
     const handleEdit = (id) => {
     setMode("edit"); // switch sidebar mode
+    setSelectedPatientId(id);
     setActiveLink("edit overview"); // highlight edit link
     navigate(`/overview/:${id}`); // navigate to overview page
   };

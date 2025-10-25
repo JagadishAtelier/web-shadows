@@ -21,20 +21,20 @@ import { useSidebar } from "./Context/SidebarContext"
 export default function Sidebar() {
   const navigate = useNavigate()
   const { pathname } = useLocation()
-const { mode, setMode, activeLink, setActiveLink } = useSidebar();
+const { mode, setMode, activeLink, setActiveLink,selectedPatientId } = useSidebar();
   const defaultLinks = [
     { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { to: "/patient-list", label: "Patient  List", icon: Users },
-    { to: "/rom-allocation", label: "Room Allocation", icon: Bed },
+    { to: "/room-allocation", label: "Room Allocation", icon: Bed },
     { to: "/add-patient", label: "Add Patient", icon: UserPlus },
   ]
 const editLinks = [
       { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard,onClick: () => {setMode("default"),navigate('/dashboard')} },
-      { to: "/", label: "Patient Overview", icon: LayoutDashboard },
-    { to: "/patient-list", label: "Doctor’s Notes", icon: Notebook },
-    { to: "/rom-allocation", label: "Patient documents", icon: Bed },
-    { to: "/add-patient", label: "Lab Results", icon: UserPlus },
-    { to: "/add-patient", label: "Triage", icon: UserPlus },
+{ to: "/overview", label: "Patient Overview", icon: LayoutDashboard },
+    { to: "/doctor-notes", label: "Doctor’s Notes", icon: Notebook },
+    { to: "/patient-documents", label: "Patient documents", icon: Bed },
+    { to: "/lab-result", label: "Lab Results", icon: UserPlus },
+    { to: "/triage", label: "Triage", icon: UserPlus },
 ]
 
   // const defaultLinks = [
@@ -71,7 +71,10 @@ const editLinks = [
         <nav className="p-4 space-y-4">
           {links.map((link) => {
             const Icon = link.icon
-            const isActive = pathname === link.to
+const isActive =
+  pathname === link.to ||
+  (pathname.startsWith("/overview") && link.label === "Patient Overview");
+
 
             return (
               <div
@@ -83,7 +86,11 @@ const editLinks = [
                   isActive ? "bg-[#E5E7FB] text-[#011D4A] hover:bg-gray-200 hover:text-gray-900" : "text-[#667085]"
                 )}
               >
-                <Link to={link.to} className="flex items-center gap-2 text-base"
+                <Link   to={
+    link.to.includes("/overview") && selectedPatientId
+      ? `/overview/${selectedPatientId}`
+      : link.to
+  } className="flex items-center gap-2 text-base"
                             onClick={() => {
               setActiveLink(link.label.toLowerCase());
               if (link.onClick) link.onClick();

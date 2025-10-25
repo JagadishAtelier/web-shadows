@@ -6,9 +6,10 @@ export const SidebarProvider = ({ children }) => {
   // mode can be 'default' or 'edit'
   const [mode, setMode] = useState("default");
   const [activeLink, setActiveLink] = useState("overview");
+const [selectedPatientId, setSelectedPatientId] = useState(null);
 
   return (
-    <SidebarContext.Provider value={{ mode, setMode, activeLink, setActiveLink }}>
+    <SidebarContext.Provider value={{ mode, setMode, activeLink, setActiveLink,selectedPatientId, setSelectedPatientId }}>
       {children}
     </SidebarContext.Provider>
   );

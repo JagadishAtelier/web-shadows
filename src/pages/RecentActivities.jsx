@@ -71,7 +71,7 @@ const allPagesData = [
 function RecentActivities() {
   const navigate = useNavigate()
     const [role, setRole] = useState("");
-    const { setMode, setActiveLink } = useSidebar();
+    const { setMode, setActiveLink,setSelectedPatientId } = useSidebar();
       useEffect(() => {
     const storedRole = localStorage.getItem("role");
     setRole(storedRole);
@@ -79,6 +79,7 @@ function RecentActivities() {
 
     const handleEdit = (id) => {
     setMode("edit"); // switch sidebar mode
+    setSelectedPatientId(id);
     setActiveLink("edit overview"); // highlight edit link
     navigate(`/overview/:${id}`); // navigate to overview page
   };
