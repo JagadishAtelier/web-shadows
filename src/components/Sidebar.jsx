@@ -4,6 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
 import logo from '../assets/logo.png'
+import LabResultModal from "./Context/LabResultModal"
 import {
   Home,
   PanelsTopLeft,
@@ -17,25 +18,38 @@ import {
   Notebook,
 } from "lucide-react"
 import { useSidebar } from "./Context/SidebarContext"
+import { useEffect, useState } from "react"
 
 export default function Sidebar() {
   const navigate = useNavigate()
   const { pathname } = useLocation()
-const { mode, setMode, activeLink, setActiveLink,selectedPatientId } = useSidebar();
+  const [openLabModal, setOpenLabModal] = useState(false);
+  const { mode, setMode, activeLink, setActiveLink, selectedPatientId } = useSidebar();
+  const [role, setRole] = useState(localStorage.getItem("role") || "receptionist")
+  useEffect(() => {
+    const storedRole = localStorage.getItem("role")
+    if (storedRole) setRole(storedRole)
+  }, [])
   const defaultLinks = [
     { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { to: "/patient-list", label: "Patient  List", icon: Users },
     { to: "/room-allocation", label: "Room Allocation", icon: Bed },
     { to: "/add-patient", label: "Add Patient", icon: UserPlus },
   ]
-const editLinks = [
-      { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard,onClick: () => {setMode("default"),navigate('/dashboard')} },
-{ to: "/overview", label: "Patient Overview", icon: LayoutDashboard },
+  const doctorSidebarLinks = [
+    { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/patient-list", label: "Patient  List", icon: Users },
+    { to: "/room-allocation", label: "Room Allocation", icon: Bed },
+    { to: "/Lab-Results", label: "Lab Results", icon: UserPlus },
+  ]
+  const editLinks = [
+    { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, onClick: () => { setMode("default"), navigate('/dashboard') } },
+    { to: "/overview", label: "Patient Overview", icon: LayoutDashboard },
     { to: "/doctor-notes", label: "Doctor’s Notes", icon: Notebook },
     { to: "/patient-documents", label: "Patient documents", icon: Bed },
     { to: "/lab-result", label: "Lab Results", icon: UserPlus },
     { to: "/triage", label: "Triage", icon: UserPlus },
-]
+  ]
 
   // const defaultLinks = [
   //   { name: "Dashboard", path: "/dashboard" },
@@ -51,8 +65,12 @@ const editLinks = [
   //     onClick: () => setMode("default"),
   //   },
   // ];
-
-  const links = mode === "edit" ? editLinks : defaultLinks;
+  const links =
+    mode === "edit"
+      ? editLinks
+      : role === "doctor"
+        ? doctorSidebarLinks
+        : defaultLinks
   return (
     <aside className="sticky top-0 h-[100vh] hidden md:hidden lg:flex flex-col w-64 bg-transparent shadow-lg">
       {/* Logo / Title */}
@@ -71,9 +89,9 @@ const editLinks = [
         <nav className="p-4 space-y-4">
           {links.map((link) => {
             const Icon = link.icon
-const isActive =
-  pathname === link.to ||
-  (pathname.startsWith("/overview") && link.label === "Patient Overview");
+            const isActive =
+              pathname === link.to ||
+              (pathname.startsWith("/overview") && link.label === "Patient Overview");
 
 
             return (
@@ -86,15 +104,20 @@ const isActive =
                   isActive ? "bg-[#E5E7FB] text-[#011D4A] hover:bg-gray-200 hover:text-gray-900" : "text-[#667085]"
                 )}
               >
-                <Link   to={
-    link.to.includes("/overview") && selectedPatientId
-      ? `/overview/${selectedPatientId}`
-      : link.to
-  } className="flex items-center gap-2 text-base"
-                            onClick={() => {
-              setActiveLink(link.label.toLowerCase());
-              if (link.onClick) link.onClick();
-            }}>
+                <Link to={
+                  link.to.includes("/overview") && selectedPatientId
+                    ? `/overview/${selectedPatientId}`
+                    : link.to
+                } className="flex items-center gap-2 text-base"
+                  onClick={(e) => {
+                    if (link.label === "Lab Results") {
+                      e.preventDefault(); // Stop navigation
+                      setOpenLabModal(true); // Open modal
+                    } else {
+                      setActiveLink(link.label.toLowerCase());
+                      if (link.onClick) link.onClick();
+                    }
+                  }}>
                   <Icon size={20} className="" />
                   {link.label}
                 </Link>
@@ -102,6 +125,7 @@ const isActive =
             )
           })}
         </nav>
+        <LabResultModal open={openLabModal} setOpen={setOpenLabModal} />
         <div className="p-5 flex flex-col gap-2 absolute bottom-0 left-0 border-t w-full">
           {[{ icon: Settings, label: "Settings" }, { icon: LogOut, label: "Logout" }].map((item) => {
             const Icon = item.icon
