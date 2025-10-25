@@ -77,8 +77,8 @@ function RecentActivities() {
       </div>
 
       {/* Responsive table wrapper */}
-      <div className="overflow-x-auto">
-        <Table className="min-w-[700px]">
+      <div className="overflow-x-auto max-sm:w-[570px]">
+        <Table className="min-w-[570px]">
           <TableHeader>
             <TableRow className="bg-[#E5E7FB] rounded-2xl hover:bg-[#E5E7FB]">
               {tableHead.map((column, index) => (

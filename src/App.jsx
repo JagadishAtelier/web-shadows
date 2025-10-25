@@ -7,16 +7,31 @@ import "./App.css";
 import { Pages } from "./pages/Pages";
 import AllPageView from "./pages/NewPage/AllPageView";
 import ProductsList from "./pages/ProductsList";
+import Login from "./pages/LoginPage/Login";
+import Signup from "./pages/LoginPage/Signup";
 function App() {
   return (
     <Router>
-      <AdminLayout>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/patient-list" element={<ProductsList />} />
-          {/* <Route path="/users" element={<Users />} /> */}
+          <Route path="/" element={<Login/>} />
+          <Route path="/login" element={<Signup/>} />
+          <Route
+            path="/dashboard"
+            element={
+              <AdminLayout>
+                <Dashboard />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/patient-list"
+            element={
+              <AdminLayout>
+                <ProductsList />
+              </AdminLayout>
+            }
+          />
         </Routes>
-      </AdminLayout>
     </Router>
   );
 }
