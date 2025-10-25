@@ -13,6 +13,7 @@ import { SidebarProvider } from "./components/Context/SidebarContext";
 import PatientProfile from "./pages/PatientProfile/PatientProfile";
 import DoctorNotes from "./pages/PatientProfile/DoctorNotes";
 import LabResult from "./pages/PatientProfile/LabResult";
+import PatientDocument from "./pages/PatientProfile/PatientDocument";
 function App() {
   return (
     <SidebarProvider>
@@ -57,6 +58,14 @@ function App() {
             element={
               <AdminLayout>
                 <LabResult />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/patient-documents"
+            element={
+              <AdminLayout>
+                <PatientDocument />
               </AdminLayout>
             }
           />
