@@ -15,6 +15,7 @@ import DoctorNotes from "./pages/PatientProfile/DoctorNotes";
 import LabResult from "./pages/PatientProfile/LabResult";
 import PatientDocument from "./pages/PatientProfile/PatientDocument";
 import Triage from "./pages/PatientProfile/Triage";
+import RoomAllocation from "./pages/RoomAllocation";
 function App() {
   return (
     <SidebarProvider>
@@ -75,6 +76,14 @@ function App() {
             element={
               <AdminLayout>
                 <Triage />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/room-allocation"
+            element={
+              <AdminLayout>
+                <RoomAllocation />
               </AdminLayout>
             }
           />

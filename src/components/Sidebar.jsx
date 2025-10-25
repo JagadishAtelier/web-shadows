@@ -19,9 +19,11 @@ import {
 } from "lucide-react"
 import { useSidebar } from "./Context/SidebarContext"
 import { useEffect, useState } from "react"
+import AddPatientModal from "./Context/AddPatientModal"
 
 export default function Sidebar() {
   const navigate = useNavigate()
+    const [open, setOpen] = useState(false);
   const { pathname } = useLocation()
   const [openLabModal, setOpenLabModal] = useState(false);
   const { mode, setMode, activeLink, setActiveLink, selectedPatientId } = useSidebar();
@@ -113,6 +115,10 @@ export default function Sidebar() {
                     if (link.label === "Lab Results") {
                       e.preventDefault(); // Stop navigation
                       setOpenLabModal(true); // Open modal
+                    }
+                    if (link.label === "Add Patient") {
+                      e.preventDefault(); // Stop navigation
+                      setOpen(true); // Open modal
                     } else {
                       setActiveLink(link.label.toLowerCase());
                       if (link.onClick) link.onClick();
@@ -126,6 +132,7 @@ export default function Sidebar() {
           })}
         </nav>
         <LabResultModal open={openLabModal} setOpen={setOpenLabModal} />
+        <AddPatientModal open={open} setOpen={setOpen}/>
         <div className="p-5 flex flex-col gap-2 absolute bottom-0 left-0 border-t w-full">
           {[{ icon: Settings, label: "Settings" }, { icon: LogOut, label: "Logout" }].map((item) => {
             const Icon = item.icon
