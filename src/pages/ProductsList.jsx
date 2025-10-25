@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -10,8 +10,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AddPatientModal from "@/components/Context/AddPatientModal";
+import { useSidebar } from "@/components/Context/SidebarContext";
+import { useNavigate } from "react-router-dom";
 
-const tableHead = [
+const baseTableHead = [
   "Patient Name",
   "Patient ID",
   "Date",
@@ -33,6 +35,7 @@ const allPagesData = [
 ];
 
 function ProductsList() {
+  const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1);
   const [open, setOpen] = useState(false);
   const rowsPerPage = 7;
@@ -41,6 +44,21 @@ function ProductsList() {
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
   const currentData = allPagesData.slice(startIndex, endIndex);
+      const [role, setRole] = useState("");
+    const { setMode, setActiveLink } = useSidebar();
+      useEffect(() => {
+    const storedRole = localStorage.getItem("role");
+    setRole(storedRole);
+  }, []);
+
+    const handleEdit = (id) => {
+    setMode("edit"); // switch sidebar mode
+    setActiveLink("edit overview"); // highlight edit link
+    navigate(`/overview/:${id}`); // navigate to overview page
+  };
+
+const tableHead = role === "doctor" ? [...baseTableHead, "Action"] : baseTableHead;
+
 
   const goToNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -91,6 +109,11 @@ function ProductsList() {
               </TableCell>
               <TableCell>{patient.doctor}</TableCell>
               <TableCell>{patient.service}</TableCell>
+                              {role === "doctor" && (
+                                <TableCell className="px-2">
+                                  <Button className="bg-blue-600 text-white h-8" onClick={() => handleEdit("P001")}>Edit</Button>
+                                </TableCell>
+                              )}
             </TableRow>
           ))}
         </TableBody>

@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
@@ -14,18 +14,45 @@ import {
   LayoutDashboard,
   Bed,
   UserPlus,
+  Notebook,
 } from "lucide-react"
+import { useSidebar } from "./Context/SidebarContext"
 
 export default function Sidebar() {
+  const navigate = useNavigate()
   const { pathname } = useLocation()
-
-  const links = [
-    { to: "/", label: "Dashboard", icon: LayoutDashboard },
+const { mode, setMode, activeLink, setActiveLink } = useSidebar();
+  const defaultLinks = [
+    { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { to: "/patient-list", label: "Patient  List", icon: Users },
     { to: "/rom-allocation", label: "Room Allocation", icon: Bed },
     { to: "/add-patient", label: "Add Patient", icon: UserPlus },
   ]
+const editLinks = [
+      { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard,onClick: () => {setMode("default"),navigate('/dashboard')} },
+      { to: "/", label: "Patient Overview", icon: LayoutDashboard },
+    { to: "/patient-list", label: "Doctor’s Notes", icon: Notebook },
+    { to: "/rom-allocation", label: "Patient documents", icon: Bed },
+    { to: "/add-patient", label: "Lab Results", icon: UserPlus },
+    { to: "/add-patient", label: "Triage", icon: UserPlus },
+]
 
+  // const defaultLinks = [
+  //   { name: "Dashboard", path: "/dashboard" },
+  //   { name: "Patient List", path: "/patient-list" },
+  // ];
+
+  // const editLinks = [
+  //   { name: "Edit Overview", path: "/overview" },
+  //   { name: "Edit Details", path: "/overview/details" },
+  //   {
+  //     name: "Back to Dashboard",
+  //     path: "/dashboard",
+  //     onClick: () => setMode("default"),
+  //   },
+  // ];
+
+  const links = mode === "edit" ? editLinks : defaultLinks;
   return (
     <aside className="sticky top-0 h-[100vh] hidden md:hidden lg:flex flex-col w-64 bg-transparent shadow-lg">
       {/* Logo / Title */}
@@ -56,7 +83,11 @@ export default function Sidebar() {
                   isActive ? "bg-[#E5E7FB] text-[#011D4A] hover:bg-gray-200 hover:text-gray-900" : "text-[#667085]"
                 )}
               >
-                <Link to={link.to} className="flex items-center gap-2 text-base">
+                <Link to={link.to} className="flex items-center gap-2 text-base"
+                            onClick={() => {
+              setActiveLink(link.label.toLowerCase());
+              if (link.onClick) link.onClick();
+            }}>
                   <Icon size={20} className="" />
                   {link.label}
                 </Link>

@@ -9,8 +9,11 @@ import AllPageView from "./pages/NewPage/AllPageView";
 import ProductsList from "./pages/ProductsList";
 import Login from "./pages/LoginPage/Login";
 import Signup from "./pages/LoginPage/Signup";
+import { SidebarProvider } from "./components/Context/SidebarContext";
+import PatientProfile from "./pages/PatientProfile/PatientProfile";
 function App() {
   return (
+    <SidebarProvider>
     <Router>
         <Routes>
           <Route path="/" element={<Login/>} />
@@ -31,8 +34,17 @@ function App() {
               </AdminLayout>
             }
           />
+          <Route
+            path="/overview/:id"
+            element={
+              <AdminLayout>
+                <PatientProfile />
+              </AdminLayout>
+            }
+          />
         </Routes>
     </Router>
+    </SidebarProvider>
   );
 }
 

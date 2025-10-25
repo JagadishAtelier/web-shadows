@@ -8,7 +8,8 @@ import {
   TableHeader,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-
+import { useSidebar } from "@/components/Context/SidebarContext";
+import { useNavigate } from "react-router-dom";
 const baseTableHead = [
   "Patient Name",
   "Patient ID",
@@ -68,11 +69,20 @@ const allPagesData = [
 ];
 
 function RecentActivities() {
+  const navigate = useNavigate()
     const [role, setRole] = useState("");
+    const { setMode, setActiveLink } = useSidebar();
       useEffect(() => {
     const storedRole = localStorage.getItem("role");
     setRole(storedRole);
   }, []);
+
+    const handleEdit = (id) => {
+    setMode("edit"); // switch sidebar mode
+    setActiveLink("edit overview"); // highlight edit link
+    navigate(`/overview/:${id}`); // navigate to overview page
+  };
+
 const tableHead = role === "doctor" ? [...baseTableHead, "Action"] : baseTableHead;
   return (
     <div className="p-4 my-5">
@@ -123,7 +133,7 @@ const tableHead = role === "doctor" ? [...baseTableHead, "Action"] : baseTableHe
                 <TableCell className="px-2">{patient.service}</TableCell>
                 {role === "doctor" && (
                   <TableCell className="px-2">
-                    <Button className="bg-blue-600 text-white h-8">Edit</Button>
+                    <Button className="bg-blue-600 text-white h-8" onClick={() => handleEdit("P001")}>Edit</Button>
                   </TableCell>
                 )}
               </TableRow>
