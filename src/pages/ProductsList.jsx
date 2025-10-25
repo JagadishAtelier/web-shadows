@@ -8,7 +8,7 @@ import {
   TableHeader,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import AddPatientModal from "@/components/Context/AddPatientModal";
 import { useSidebar } from "@/components/Context/SidebarContext";
 import { useNavigate } from "react-router-dom";
@@ -112,7 +112,7 @@ const tableHead = role === "doctor" ? [...baseTableHead, "Action"] : baseTableHe
               <TableCell>{patient.service}</TableCell>
                               {role === "doctor" && (
                                 <TableCell className="px-2">
-                                  <Button className="bg-blue-600 text-white h-8" onClick={() => handleEdit("P001")}>Edit</Button>
+                   <Button className="bg-[#0E1680] text-white h-8" onClick={() => handleEdit("P001")}><Eye/></Button>
                                 </TableCell>
                               )}
             </TableRow>

@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/Context/SidebarContext";
 import { useNavigate } from "react-router-dom";
+import { Eye } from "lucide-react";
 const baseTableHead = [
   "Patient Name",
   "Patient ID",
@@ -134,7 +135,7 @@ const tableHead = role === "doctor" ? [...baseTableHead, "Action"] : baseTableHe
                 <TableCell className="px-2">{patient.service}</TableCell>
                 {role === "doctor" && (
                   <TableCell className="px-2">
-                    <Button className="bg-blue-600 text-white h-8" onClick={() => handleEdit("P001")}>Edit</Button>
+                    <Button className="bg-[#0E1680] text-white h-8" onClick={() => handleEdit("P001")}><Eye/></Button>
                   </TableCell>
                 )}
               </TableRow>

@@ -12,6 +12,7 @@ import Signup from "./pages/LoginPage/Signup";
 import { SidebarProvider } from "./components/Context/SidebarContext";
 import PatientProfile from "./pages/PatientProfile/PatientProfile";
 import DoctorNotes from "./pages/PatientProfile/DoctorNotes";
+import LabResult from "./pages/PatientProfile/LabResult";
 function App() {
   return (
     <SidebarProvider>
@@ -48,6 +49,14 @@ function App() {
             element={
               <AdminLayout>
                 <DoctorNotes />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/lab-result"
+            element={
+              <AdminLayout>
+                <LabResult />
               </AdminLayout>
             }
           />
