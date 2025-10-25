@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { ArrowLeft } from 'lucide-react'
 import React from 'react'
+import PatientOverviewFields from './PatientOverviewFields'
 
 function PatientProfile() {
     return (
@@ -10,7 +11,7 @@ function PatientProfile() {
                 <ArrowLeft size={18} />
                 <h2 className="text-lg font-bold text-[#0E1680]">Patient list / Patients Details / Alice Mwangi</h2>
             </div>
-
+            <div className='flex gap-4'>
             {/* LEFT CONTENT */}
             <div className='w-[40%]'>
 
@@ -94,6 +95,10 @@ function PatientProfile() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* RIGHT CONTENT */}
+            <PatientOverviewFields/>
             </div>
         </div>
     )
