@@ -3,13 +3,11 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import "./App.css";
 import Home from "./Pages/Home";
-import Navbar from "./Components/Navbar";
 import MouseTrail from "./Components/MouseTrail";
 function App() {
   return (
     <Router>
       <MouseTrail/>
-      <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>} />          
         </Routes>
