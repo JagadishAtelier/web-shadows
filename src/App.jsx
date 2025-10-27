@@ -21,6 +21,7 @@ import PharmaPrescriptions from "./pages/PharmacistPage/PharmaPrescriptions";
 import PharmaStock from "./pages/PharmacistPage/PharmaStock";
 import PharmaUpdatePage from "./pages/PharmacistPage/PharmaUpdatePage";
 import LabTechDashboard from "./pages/LabtachPage/LabTechDashboard";
+import LabTechPrescriptions from "./pages/LabtachPage/LabTechPrescriptions";
 function App() {
   return (
     <SidebarProvider>
@@ -129,6 +130,14 @@ function App() {
             element={
               <AdminLayout>
                 <LabTechDashboard />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/lab-tech-prescriptions"
+            element={
+              <AdminLayout>
+                <LabTechPrescriptions />
               </AdminLayout>
             }
           />
