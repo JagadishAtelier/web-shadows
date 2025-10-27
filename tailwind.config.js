@@ -14,6 +14,9 @@ export default {
         foreground: "#111827",
         muted: "#6B7280",
       },
+            animation: {
+        spinSlow: "spin 3s linear infinite", 
+      },
     },
   },
   plugins: [],
