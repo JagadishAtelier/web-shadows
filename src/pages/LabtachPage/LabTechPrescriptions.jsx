@@ -12,6 +12,7 @@ import { useSidebar } from "@/components/Context/SidebarContext";
 import { useNavigate } from "react-router-dom";
 import { Edit2, Eye, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import LabTechAddLabModal from "@/components/Context/LabTechAddLab";
 
 const baseTableHead = [
   "Patient Name",
@@ -56,6 +57,7 @@ const allPagesData = [
 function LabTechPrescriptions() {
 const navigate = useNavigate();
   const { setMode, setActiveLink, setSelectedPatientId } = useSidebar();
+    const [openAddLabModal, setOpenAddLabModal] = useState(false);
   const [role, setRole] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
@@ -116,12 +118,12 @@ List of all patient medications</p>
             />
           </div>
 
-          <Button className="bg-[#0E1680] h-10" onClick={() => setOpen(true)}>
-            + Add Patient
+          <Button className="bg-[#0E1680] h-10" onClick={() => setOpenAddLabModal(true)}>
+            + Add Lab
           </Button>
         </div>
       </div>
-
+<LabTechAddLabModal openAddLabModal={openAddLabModal} setOpenAddLabModal={setOpenAddLabModal}/>
       {/* Table */}
       <div className="overflow-x-auto max-sm:w-[570px] ">
         <Table className="min-w-[570px] rounded-2xl overflow-hidden border border-gray-200">
