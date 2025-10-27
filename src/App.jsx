@@ -19,6 +19,7 @@ import RoomAllocation from "./pages/RoomAllocation";
 import PharmacistDashboard from "./pages/PharmacistPage/PharmacistDashboard";
 import PharmaPrescriptions from "./pages/PharmacistPage/PharmaPrescriptions";
 import PharmaStock from "./pages/PharmacistPage/PharmaStock";
+import PharmaUpdatePage from "./pages/PharmacistPage/PharmaUpdatePage";
 function App() {
   return (
     <SidebarProvider>
@@ -111,6 +112,14 @@ function App() {
             element={
               <AdminLayout>
                 <PharmaStock />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/pharma-update/:id"
+            element={
+              <AdminLayout>
+                <PharmaUpdatePage />
               </AdminLayout>
             }
           />

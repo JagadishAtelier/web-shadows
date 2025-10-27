@@ -65,10 +65,7 @@ const navigate = useNavigate()
   }, []);
 
     const handleEdit = (id) => {
-    setMode("edit"); // switch sidebar mode
-    setSelectedPatientId(id);
-    setActiveLink("edit overview"); // highlight edit link
-    navigate(`/overview/:${id}`); // navigate to overview page
+    navigate(`/pharma-update/:${id}`); // navigate to overview page
   };
 
   return (
