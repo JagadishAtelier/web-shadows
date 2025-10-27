@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import "./App.css";
-import Home from "./Pages/Home";
+import Home from "./src/Pages/Home";
 function App() {
   return (
     <Router>
