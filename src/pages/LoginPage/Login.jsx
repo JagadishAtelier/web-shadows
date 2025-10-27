@@ -13,6 +13,8 @@ function Login() {
 
   if (normalizedEmail === "doctor@gmail.com") userRole = "doctor";
   else if (normalizedEmail === "pharmacist@gmail.com") userRole = "pharmacist";
+  else if (normalizedEmail === "labtech@gmail.com") userRole = "labtech";
+  
 
   localStorage.setItem("role", userRole);
 
@@ -22,6 +24,9 @@ if (userRole === "doctor") {
   window.location.reload();
 } else if (userRole === "pharmacist") {
   navigate("/pharma-dashboard");
+  window.location.reload();
+} else if (userRole === "labtech") {
+  navigate("/labtech-dashboard");
   window.location.reload();
 } else {
   navigate("/dashboard");

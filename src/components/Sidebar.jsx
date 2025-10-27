@@ -52,6 +52,10 @@ useEffect(() => {
     { to: "/prescriptions", label: "Prescriptions", icon: Users },
     { to: "/stockinventory", label: "Stock & Inventory", icon: Bed },
   ]
+  const labtechSidebarLinks = [
+        { to: "/labtech-dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/lab-tech-prescriptions", label: "Prescriptions", icon: Users },
+  ]
   const editLinks = [
     { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, onClick: () => { setMode("default"), navigate('/dashboard') } },
     { to: "/overview", label: "Patient Overview", icon: LayoutDashboard },
@@ -82,6 +86,8 @@ const links =
       ? doctorSidebarLinks
       : role === "pharmacist"
         ? pharmacistSidebarLinks
+        :role === "labtech"
+        ?labtechSidebarLinks
         : defaultLinks;
 
   return (
