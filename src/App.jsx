@@ -6,12 +6,13 @@ import Home from "./Pages/Home";
 import MouseTrail from "./Components/MouseTrail";
 function App() {
   return (
+    <MouseTrail>
     <Router>
-      <MouseTrail/>
         <Routes>
           <Route path="/" element={<Home/>} />          
         </Routes>
     </Router>
+    </MouseTrail>
   );
 }
 
