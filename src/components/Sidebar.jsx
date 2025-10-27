@@ -27,11 +27,14 @@ export default function Sidebar() {
   const { pathname } = useLocation()
   const [openLabModal, setOpenLabModal] = useState(false);
   const { mode, setMode, activeLink, setActiveLink, selectedPatientId } = useSidebar();
-  const [role, setRole] = useState(localStorage.getItem("role") || "receptionist")
-  useEffect(() => {
-    const storedRole = localStorage.getItem("role")
-    if (storedRole) setRole(storedRole)
-  }, [])
+  const location = useLocation(); 
+const [role, setRole] = useState(localStorage.getItem("role") || "receptionist");
+useEffect(() => {
+  const storedRole = localStorage.getItem("role");
+  console.log("Sidebar role check:", storedRole);
+  if (storedRole) setRole(storedRole);
+}, [location.pathname]);
+
   const defaultLinks = [
     { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { to: "/patient-list", label: "Patient  List", icon: Users },
@@ -43,6 +46,11 @@ export default function Sidebar() {
     { to: "/patient-list", label: "Patient  List", icon: Users },
     { to: "/room-allocation", label: "Room Allocation", icon: Bed },
     { to: "/Lab-Results", label: "Lab Results", icon: UserPlus },
+  ]
+  const pharmacistSidebarLinks = [
+        { to: "/pharma-dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/prescriptions", label: "Prescriptions", icon: Users },
+    { to: "/stockinventory", label: "Stock & Inventory", icon: Bed },
   ]
   const editLinks = [
     { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, onClick: () => { setMode("default"), navigate('/dashboard') } },
@@ -67,12 +75,15 @@ export default function Sidebar() {
   //     onClick: () => setMode("default"),
   //   },
   // ];
-  const links =
-    mode === "edit"
-      ? editLinks
-      : role === "doctor"
-        ? doctorSidebarLinks
-        : defaultLinks
+const links =
+  mode === "edit"
+    ? editLinks
+    : role === "doctor"
+      ? doctorSidebarLinks
+      : role === "pharmacist"
+        ? pharmacistSidebarLinks
+        : defaultLinks;
+
   return (
     <aside className="sticky top-0 h-[100vh] hidden md:hidden lg:flex flex-col w-64 bg-transparent shadow-lg">
       {/* Logo / Title */}

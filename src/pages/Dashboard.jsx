@@ -36,7 +36,7 @@ const data1 = {
     {
       data: [34, 76, 120, 24],
       backgroundColor: ["#0b1b3d", "#2a3a5d", "#8c9bb3", "#cfd4e0"],
-      borderWidth: 2,          // add border for visual separation
+      borderWidth: 2,
       borderColor: "#fff",     // white gap between slices
       spacing: 4,              // gap between slices (Chart.js v4+)
       hoverOffset: 10,         // optional: makes slices pop on hover

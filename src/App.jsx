@@ -16,6 +16,9 @@ import LabResult from "./pages/PatientProfile/LabResult";
 import PatientDocument from "./pages/PatientProfile/PatientDocument";
 import Triage from "./pages/PatientProfile/Triage";
 import RoomAllocation from "./pages/RoomAllocation";
+import PharmacistDashboard from "./pages/PharmacistPage/PharmacistDashboard";
+import PharmaPrescriptions from "./pages/PharmacistPage/PharmaPrescriptions";
+import PharmaStock from "./pages/PharmacistPage/PharmaStock";
 function App() {
   return (
     <SidebarProvider>
@@ -84,6 +87,30 @@ function App() {
             element={
               <AdminLayout>
                 <RoomAllocation />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/pharma-dashboard"
+            element={
+              <AdminLayout>
+                <PharmacistDashboard />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/prescriptions"
+            element={
+              <AdminLayout>
+                <PharmaPrescriptions />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/stockinventory"
+            element={
+              <AdminLayout>
+                <PharmaStock />
               </AdminLayout>
             }
           />

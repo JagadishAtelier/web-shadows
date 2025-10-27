@@ -5,18 +5,30 @@ import { useNavigate } from "react-router-dom";
 function Signup() {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({ email: "", password: "" });
-      const handleLogin = () => {
-    // Simulate backend role check
-    const { email } = formData;
-    let userRole = "receptionist";
+ const handleLogin = () => {
+  const { email } = formData;
+  let userRole = "receptionist";
+  const normalizedEmail = email.toLowerCase();
 
-    if (email === "doctor@gmail.com") userRole = "doctor"; // mock logic
+  if (normalizedEmail === "doctor@gmail.com") userRole = "doctor";
+  else if (normalizedEmail === "pharmacist@gmail.com") userRole = "pharmacist";
 
-    // Store role in localStorage
-    localStorage.setItem("role", userRole);
+  localStorage.setItem("role", userRole);
 
-    navigate("/dashboard");
-  };
+  // Role-based navigation
+if (userRole === "doctor") {
+  navigate("/dashboard");
+  window.location.reload();
+} else if (userRole === "pharmacist") {
+  navigate("/pharma-dashboard");
+  window.location.reload();
+} else {
+  navigate("/dashboard");
+  window.location.reload();
+}
+
+};
+
   return (
     <div className="flex w-full h-screen items-center justify-center gap-20">
       {/* Left side - Image */}
