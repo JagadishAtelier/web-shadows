@@ -3,16 +3,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import "./App.css";
 import Home from "./Pages/Home";
-import MouseTrail from "./Components/MouseTrail";
 function App() {
   return (
-    <MouseTrail>
     <Router>
         <Routes>
           <Route path="/" element={<Home/>} />          
         </Routes>
     </Router>
-    </MouseTrail>
   );
 }
 
