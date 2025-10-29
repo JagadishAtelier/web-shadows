@@ -1,5 +1,5 @@
-import HeroSection from '@/Components/HomePage/WebHeroSection';
-import HomeAbout from '@/Components/HomePage/WebHomeAbout';
+import HeroSection from '@/Components/WebHomePage/WebHeroSection';
+import HomeAbout from '@/Components/WebHomePage/WebHomeAbout';
 import Navbar from '@/Components/WebNavbar';
 import React from 'react';
 
