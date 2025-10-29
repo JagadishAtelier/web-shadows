@@ -88,7 +88,6 @@ function HeroSection() {
                 </p>
                 
             </div>
-            <HomeAbout/>
         </div>
     );
 }

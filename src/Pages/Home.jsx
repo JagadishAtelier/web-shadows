@@ -1,4 +1,5 @@
 
+import MouseTrail from "@/Components/MouseTrail.jsx";
 import HeroSection from "../Components/HomePage/HeroSection.jsx";
 import HomeAbout from "../Components/HomePage/HomeAbout.jsx";
 import Navbar from "../Components/Navbar.jsx";
