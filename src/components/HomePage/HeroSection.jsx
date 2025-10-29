@@ -1,6 +1,7 @@
 import React from "react";
 import "./HeroSection.css";
 import { ArrowDown, Facebook, Globe2, Instagram, Linkedin, Twitter } from "lucide-react";
+import HomeAbout from "./HomeAbout";
 
 function HeroSection() {
     const images = [
@@ -87,6 +88,7 @@ function HeroSection() {
                 </p>
                 
             </div>
+            <HomeAbout/>
         </div>
     );
 }
