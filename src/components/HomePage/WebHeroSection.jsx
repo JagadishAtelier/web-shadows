@@ -1,7 +1,7 @@
 import React from "react";
 import "./HeroSection.css";
 import { ArrowDown, Facebook, Globe2, Instagram, Linkedin, Twitter } from "lucide-react";
-import HomeAbout from "./HomeAbout";
+import HomeAbout from "./WebHomeAbout";
 
 function HeroSection() {
     const images = [
