@@ -1,7 +1,7 @@
 
-import HeroSection from '@/Components/HomePage/HeroSection'
-import HomeAbout from '@/Components/HomePage/HomeAbout'
-import Navbar from '@/Components/Navbar'
+import HeroSection from "../Components/HomePage/HeroSection.jsx";
+import HomeAbout from "../Components/HomePage/HomeAbout.jsx";
+import Navbar from "../Components/Navbar.jsx";
 import React from 'react'
 
 function Home() {
