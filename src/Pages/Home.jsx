@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar from "@/Components/Navbar.jsx";
-import HeroSection from "@/Components/HomePage/HeroSection.jsx";
-import HomeAbout from "@/Components/HomePage/HomeAbout.jsx";
 import MouseTrail from '@/Components/MouseTrail';
+import Navbar from '@/Components/Navbar';
+import HeroSection from '@/Components/HomePage/HeroSection';
+import HomeAbout from '@/Components/HomePage/HomeAbout';
 
 function Home() {
   return (
